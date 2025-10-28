@@ -2,21 +2,21 @@ package es.etg.dam;
 
 public class Main {
 
-    public static final int BOAT_COUNT = 20;
+    public static final int CONTADORBOTES = 20;
 
     public static void main(String[] args) {
-        EmergencyService service = new EmergencyService(new MarkdownReportGenerator());
+        ServicioEmergencia servicio = new ServicioEmergencia(new GeneradorMD());
 
-        for (int i = 0; i < BOAT_COUNT; i++) {
+        for (int i = 0; i < CONTADORBOTES; i++) {
             String id = String.format("B%02d", i);
-            Boat boat = new Boat(id, service);
-            boat.run();
+            Bote bote = new Bote(id, servicio);
+            bote.run();
         }
 
-        service.waitForAllReports(BOAT_COUNT);
+        servicio.waitForAllReports(CONTADORBOTES);
 
-        service.generateReport();
+        servicio.generateReport();
 
-        System.out.println("Informe generado: Informe.md en el directorio de trabajo.");
+        System.out.println("Informe generado");
     }
 }
