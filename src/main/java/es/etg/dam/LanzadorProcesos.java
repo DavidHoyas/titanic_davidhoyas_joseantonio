@@ -6,6 +6,8 @@ import java.util.List;
 
 public class LanzadorProcesos {
 
+    public static final String PROCESO = "Lanzando proceso para ";
+
     public List<Process> lanzarBotes(int numBotes) throws IOException {
         List<Process> lista = new ArrayList<>();
 
@@ -19,7 +21,7 @@ public class LanzadorProcesos {
 
     private Process lanzarBote(String id) throws IOException {
         String comando = "java com.titanic.procesos.Bote " + id;
-        System.out.println("Lanzando proceso para " + id);
+        System.out.println(PROCESO + id);
         return Runtime.getRuntime().exec(comando);
     }
 }
