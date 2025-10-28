@@ -19,10 +19,10 @@ public class ProcesadorInforme {
 
         sb.append("# SERVICIO DE EMERGENCIAS\n\n");
         sb.append("Ejecución realizada el día ")
-          .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'a las' HH:mm:ss")))
-          .append("\n\n");
+                .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'a las' HH:mm:ss")))
+                .append("\n\n");
 
-        int total = 0, mujeres = 0, varones = 0, ninos = 0;
+        int total = 0, mujeres = 0, hombres = 0, ninos = 0;
 
         for (int i = 0; i < numBotes; i++) {
             String id = "B" + String.format("%02d", i);
@@ -39,17 +39,17 @@ public class ProcesadorInforme {
                 List<String> lineas = Files.readAllLines(path);
                 int t = getValor(lineas, "Total");
                 int m = getValor(lineas, "Mujeres");
-                int v = getValor(lineas, "Varones");
+                int h = getValor(lineas, "Hombres");
                 int n = getValor(lineas, "Niños");
 
                 sb.append("- Total Salvados ").append(t).append("\n");
                 sb.append("  - Mujeres ").append(m).append("\n");
-                sb.append("  - Varones ").append(v).append("\n");
+                sb.append("  - Hombres ").append(h).append("\n");
                 sb.append("  - Niños ").append(n).append("\n\n");
 
                 total += t;
                 mujeres += m;
-                varones += v;
+                hombres += h;
                 ninos += n;
 
             } catch (IOException e) {
@@ -60,7 +60,7 @@ public class ProcesadorInforme {
         sb.append("## Total\n\n");
         sb.append("- Total Salvados ").append(total).append("\n");
         sb.append("  - Mujeres ").append(mujeres).append("\n");
-        sb.append("  - Varones ").append(varones).append("\n");
+        sb.append("  - Hombres ").append(hombres).append("\n");
         sb.append("  - Niños ").append(ninos).append("\n");
 
         try {
