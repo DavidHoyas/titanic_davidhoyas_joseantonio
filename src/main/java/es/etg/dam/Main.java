@@ -9,7 +9,7 @@ public class Main {
 
         for (int i = 0; i < CONTADORBOTES; i++) {
             String id = String.format("B%02d", i);
-            Bote bote = new Bote(id, servicio);
+            Personas bote = new Personas(id, servicio);
             bote.run();
         }
 
