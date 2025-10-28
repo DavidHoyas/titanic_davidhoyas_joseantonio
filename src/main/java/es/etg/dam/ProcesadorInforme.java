@@ -9,8 +9,10 @@ import java.util.List;
 
 public class ProcesadorInforme {
 
-    private static final String EXTENSION = ".txt";
-    private static final String INFORME = "Informe.md";
+    public static final String EXTENSION = ".txt";
+    public static final String INFORME = "Informe.md";
+    public static final String ERROR_LECTURA = "Error leyendo el fichero del ";
+    public static final String ERROR_ESCRITURA = "Error al escribir el informe final.";
 
     public void generarInforme(int numBotes) {
         StringBuilder sb = new StringBuilder();
@@ -51,7 +53,7 @@ public class ProcesadorInforme {
                 ninos += n;
 
             } catch (IOException e) {
-                System.err.println("Error leyendo el fichero del " + id);
+                System.err.println(ERROR_LECTURA + id);
             }
         }
 
@@ -64,7 +66,7 @@ public class ProcesadorInforme {
         try {
             Files.writeString(Path.of(INFORME), sb.toString());
         } catch (IOException e) {
-            System.err.println("Error al escribir el informe final.");
+            System.err.println(ERROR_ESCRITURA);
         }
     }
 
