@@ -5,12 +5,8 @@ public class Main {
     public static final int CONTADOR_BOTES = 20;
 
     public static void main(String[] args) {
-<<<<<<< HEAD
         // Creamos el servicio de emergencias
         ServicioEmergencia servicio = new ServicioEmergencia(new GeneradorMD());
-=======
-        ServicioEmergencia servicio = new ServicioEmergencia(new ProcesadorInforme());
->>>>>>> a4a6cec (v4)
 
         // Lanzamos los botes en hilos independientes
         for (int i = 0; i < CONTADOR_BOTES; i++) {
@@ -23,12 +19,8 @@ public class Main {
         // Esperamos a que todos los reportes se reciban
         servicio.waitForAllReports(CONTADOR_BOTES);
 
-<<<<<<< HEAD
         // Generamos el informe final
         servicio.generateReport();
-=======
-        servicio.generarInforme();
->>>>>>> a4a6cec (v4)
 
         System.out.println("Informe generado correctamente.");
     }
