@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Personas implements Runnable {
 
-    public static final String id;
-    public static final SERVICIOEMERGENCIA servicio;
-    public static final Random RANDOM = new Random();
+    private final String id;
+    private final ServicioEmergencia servicio;
+    private static final Random RANDOM = new Random();
 
-    public Bote(String id, ServicioEmergencia servicio) {
+    public Personas(String id, ServicioEmergencia servicio) {
         this.id = id;
         this.servicio = servicio;
     }
@@ -16,15 +16,18 @@ public class Personas implements Runnable {
     @Override
     public void run() {
         try {
+            // Espera aleatoria de 2 a 6 segundos
             int espera = 2 + RANDOM.nextInt(5);
             Thread.sleep(espera * 1000L);
 
+            // Generar datos aleatorios del bote
             int total = 1 + RANDOM.nextInt(100);
-            int niños = RANDOM.nextInt(total + 1);
-            int mujeres = RANDOM.nextInt(total - niños + 1);
-            int hombres = total - niños - mujeres;
+            int ninos = RANDOM.nextInt(total + 1);
+            int mujeres = RANDOM.nextInt(total - ninos + 1);
+            int hombres = total - ninos - mujeres;
 
-            servicio.mandar(new registros(id, total, mujeres, hombres, niños));
+            // Mandar el registro al servicio de emergencias
+            servicio.mandar(new Registros(id, total, mujeres, hombres, ninos));
 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
