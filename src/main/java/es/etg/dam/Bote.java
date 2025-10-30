@@ -11,11 +11,11 @@ public class Bote {
 
     public static final Random RANDOM = new Random();
 
-    private final String id;
-    private final int total;
-    private final int mujeres;
-    private final int hombres;
-    private final int ninios;
+    private  String id;
+    private  int total;
+    private  int mujeres;
+    private  int hombres;
+    private  int ninios;
 
     public Bote(String id) {
         this.id = id;
