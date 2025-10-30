@@ -20,7 +20,7 @@ public class Bote {
     public Bote(String id) {
         this.id = id;
 
-        this.total = 10 + RANDOM.nextInt(91); // [10, 100]
+        this.total = 10 + RANDOM.nextInt(91);
 
         this.ninios = RANDOM.nextInt(total / 2 + 1);
 
