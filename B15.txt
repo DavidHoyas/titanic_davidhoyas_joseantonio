@@ -1,4 +1,0 @@
-Total=98
-Mujeres=5
-Hombres=0
-Niños=93

@@ -1,4 +1,0 @@
-Total=77
-Mujeres=42
-Hombres=17
-Niños=18
