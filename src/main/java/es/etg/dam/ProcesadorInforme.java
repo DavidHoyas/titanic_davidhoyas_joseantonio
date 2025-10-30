@@ -45,7 +45,6 @@ public class ProcesadorInforme {
 
         try {
             Files.writeString(Path.of(INFORME), sb.toString());
-            System.out.println("✅ Informe generado correctamente: " + INFORME);
         } catch (IOException e) {
             System.err.println(ERROR_ESCRITURA);
         }
