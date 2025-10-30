@@ -1,27 +1,16 @@
 package es.etg.dam;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LanzadorProcesos {
 
-    public static final String PROCESO = "Lanzando proceso para ";
+    private static final String MSG_ERROR = "Error al ejecutar el comando";
 
-    public List<Process> lanzarBotes(int numBotes) throws IOException {
-        List<Process> lista = new ArrayList<>();
+    public void lanzarBote(String id) throws IOException {
+        String comando = String.format("java -cp ./target/classes es.etg.dam.Bote %s", id);
 
-        for (int i = 0; i < numBotes; i++) {
-            String idBote = "B" + String.format("%02d", i);
-            lista.add(lanzarBote(idBote));
-        }
+        Process process = Runtime.getRuntime().exec(comando);
 
-        return lista;
-    }
-
-    private Process lanzarBote(String id) throws IOException {
-        String comando = "java com.titanic.procesos.Bote " + id;
-        System.out.println(PROCESO + id);
-        return Runtime.getRuntime().exec(comando);
+        System.out.println("Lanzado proceso para bote " + id);
     }
 }

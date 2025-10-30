@@ -15,10 +15,9 @@ public class ServicioEmergencia {
 
     public void ejecutarSimulacion() {
         try {
-            System.out.println("Iniciando simulación del Titanic...");
 
             List<Process> procesos = lanzador.lanzarBotes(NUM_BOTES);
-            System.out.println("Se han lanzado " + procesos.size() + " procesos de botes.");
+            System.out.println(procesos.size());
 
             for (Process p : procesos) {
                 p.waitFor();
