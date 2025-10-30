@@ -1,37 +1,31 @@
 package es.etg.dam;
 
 import java.io.IOException;
-import java.util.List;
 
 public class ServicioEmergencia {
 
-    public static final int NUM_BOTES = 20;
-    public static final int TIEMPO_ESPERA_FINAL = 2000;
-    public static final String CORRECTO = "Simulación finalizada. Informe generado en 'Informe.md'.";
-    public static final String ERROR = "Error en el Servicio de Emergencias ";
+    public final LanzadorProcesos lanzador = new LanzadorProcesos();
+    public final ProcesadorInforme procesador = new ProcesadorInforme();
+    public final static String ERROR = "Error lanzando bote ";
 
-    private final LanzadorProcesos lanzador = new LanzadorProcesos();
-    private final ProcesadorInforme procesador = new ProcesadorInforme();
-
-    public void ejecutarSimulacion() {
-        try {
-
-            List<Process> procesos = lanzador.lanzarBotes(NUM_BOTES);
-            System.out.println(procesos.size());
-
-            for (Process p : procesos) {
-                p.waitFor();
+    public void lanzarBotes(int numBotes) {
+        for (int i = 0; i < numBotes; i++) {
+            String id = String.format("B%02d", i);
+            try {
+                lanzador.lanzarBote(id);
+            } catch (IOException e) {
+                System.err.println(ERROR + id);
             }
-
-            Thread.sleep(TIEMPO_ESPERA_FINAL);
-
-            procesador.generarInforme(NUM_BOTES);
-
-            System.out.println(CORRECTO);
-
-        } catch (IOException | InterruptedException e) {
-            System.err.println(ERROR + e.getMessage());
-            e.printStackTrace();
         }
+    }
+
+    public void generarInforme(int numBotes) {
+        try {
+            Thread.sleep(7000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        procesador.generarInforme(numBotes);
     }
 }

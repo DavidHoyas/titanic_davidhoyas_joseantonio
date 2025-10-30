@@ -2,25 +2,17 @@ package es.etg.dam;
 
 public class Main {
 
-    public static final int CONTADOR_BOTES = 20;
-    public static final String GENERARINF = "Informe generado correctamente.";
+    public static final int NUM_BOTES = 20;
+    public static final String INFORME = "Informe generado correctamente: Informe.md";
 
     public static void main(String[] args) {
-        ServicioEmergencia servicio = new ServicioEmergencia(new ProcesadorInforme());
 
-        // Lanzamos los botes en hilos independientes
-        for (int i = 0; i < CONTADOR_BOTES; i++) {
-            String id = String.format("B%02d", i);
-            Personas bote = new Personas(id, servicio);
-            Thread hilo = new Thread(bote);
-            hilo.start();
-        }
+        ServicioEmergencia servicio = new ServicioEmergencia();
 
-        // Esperamos a que todos los reportes se reciban
-        servicio.waitForAllReports(CONTADOR_BOTES);
+        servicio.lanzarBotes(NUM_BOTES);
 
-        servicio.generarInforme();
+        servicio.generarInforme(NUM_BOTES);
 
-        System.out.println(GENERARINF);
+        System.out.println(INFORME);
     }
 }

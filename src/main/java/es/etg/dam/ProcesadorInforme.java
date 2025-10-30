@@ -13,6 +13,7 @@ public class ProcesadorInforme {
     public static final String INFORME = "Informe.md";
     public static final String ERROR_LECTURA = "Error leyendo el fichero del ";
     public static final String ERROR_ESCRITURA = "Error al escribir el informe final.";
+    public static final String INVALIDO = "Valor numérico inválido en la línea: ";
 
     public void generarInforme(int numBotes) {
         StringBuilder sb = new StringBuilder();
@@ -22,7 +23,7 @@ public class ProcesadorInforme {
                 .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'a las' HH:mm:ss")))
                 .append("\n\n");
 
-        int total = 0, mujeres = 0, hombres = 0, ninos = 0;
+        int total = 0, mujeres = 0, hombres = 0, ninios = 0;
 
         for (int i = 0; i < numBotes; i++) {
             String id = "B" + String.format("%02d", i);
@@ -50,7 +51,7 @@ public class ProcesadorInforme {
                 total += t;
                 mujeres += m;
                 hombres += h;
-                ninos += n;
+                ninios += n;
 
             } catch (IOException e) {
                 System.err.println(ERROR_LECTURA + id);
@@ -61,7 +62,7 @@ public class ProcesadorInforme {
         sb.append("- Total Salvados ").append(total).append("\n");
         sb.append("  - Mujeres ").append(mujeres).append("\n");
         sb.append("  - Hombres ").append(hombres).append("\n");
-        sb.append("  - Niños ").append(ninos).append("\n");
+        sb.append("  - Niños ").append(ninios).append("\n");
 
         try {
             Files.writeString(Path.of(INFORME), sb.toString());
@@ -72,8 +73,15 @@ public class ProcesadorInforme {
 
     private int getValor(List<String> lineas, String clave) {
         for (String l : lineas) {
-            if (l.startsWith(clave + "=")) {
-                return Integer.parseInt(l.split("=")[1]);
+            if (l.contains(clave + "=")) {
+                String[] partes = l.split("=");
+                if (partes.length == 2) {
+                    try {
+                        return Integer.parseInt(partes[1].trim());
+                    } catch (NumberFormatException e) {
+                        System.err.println(INVALIDO + l);
+                    }
+                }
             }
         }
         return 0;
