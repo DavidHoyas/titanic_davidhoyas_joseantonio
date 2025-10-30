@@ -28,13 +28,13 @@ public class Bote {
             Thread.sleep(espera * 1000L);
 
             int total = 1 + RANDOM.nextInt(100);
-            int ninos = RANDOM.nextInt(total + 1);
-            int mujeres = RANDOM.nextInt(total - ninos + 1);
-            int hombres = total - ninos - mujeres;
+            int ninios = RANDOM.nextInt(total + 1);
+            int mujeres = RANDOM.nextInt(total - ninios + 1);
+            int hombres = total - ninios - mujeres;
 
             String contenido = String.format(
                     TOTAL,
-                    total, mujeres, hombres, ninos
+                    total, mujeres, hombres, ninios
             );
 
             Files.writeString(path, contenido);
