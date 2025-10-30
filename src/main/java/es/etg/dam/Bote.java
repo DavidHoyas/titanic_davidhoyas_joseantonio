@@ -44,7 +44,6 @@ public class Bote {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         } catch (IOException e) {
-            System.err.println("");
         }
     }
 }
