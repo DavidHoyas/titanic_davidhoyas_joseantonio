@@ -9,7 +9,7 @@ public class Bote {
 
     public static final String EXTENSION = ".txt";
     public static final Random RANDOM = new Random();
-    public static final String ERRORBOTE = "\"Debe indicarse el ID del bote como argumento.\"";
+    public static final String ERRORBOTE = "Debe indicarse el ID del bote como argumento";
     public static final String ID = "ID BOTE";
     public static final String ERROR = "ERROR AL ESCRIBIR EN EL FICHERO";
     public static final String TOTAL = "Total=%d%nMujeres=%d%nHombres=%d%nNiños=%d%n";
