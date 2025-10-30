@@ -9,10 +9,8 @@ public class Main {
 
         ServicioEmergencia servicio = new ServicioEmergencia();
 
-        // Lanza los 20 procesos de botes
         servicio.lanzarBotes(NUM_BOTES);
 
-        // Espera que terminen y genera el informe
         servicio.generarInforme(NUM_BOTES);
 
         System.out.println(INFORME);

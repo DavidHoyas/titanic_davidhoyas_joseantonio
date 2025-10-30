@@ -11,6 +11,6 @@ public class Registros {
     private final int total;
     private final int mujeres;
     private final int hombres;
-    private final int ninos;
+    private final int ninios;
 
 }

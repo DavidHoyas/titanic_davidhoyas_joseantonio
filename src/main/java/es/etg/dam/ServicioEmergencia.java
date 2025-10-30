@@ -4,8 +4,9 @@ import java.io.IOException;
 
 public class ServicioEmergencia {
 
-    private final LanzadorProcesos lanzador = new LanzadorProcesos();
-    private final ProcesadorInforme procesador = new ProcesadorInforme();
+    public final LanzadorProcesos lanzador = new LanzadorProcesos();
+    public final ProcesadorInforme procesador = new ProcesadorInforme();
+    public final static String ERROR = "Error lanzando bote ";
 
     public void lanzarBotes(int numBotes) {
         for (int i = 0; i < numBotes; i++) {
@@ -13,14 +14,13 @@ public class ServicioEmergencia {
             try {
                 lanzador.lanzarBote(id);
             } catch (IOException e) {
-                System.err.println("Error lanzando bote " + id);
+                System.err.println(ERROR + id);
             }
         }
     }
 
     public void generarInforme(int numBotes) {
         try {
-            // Esperamos unos segundos a que terminen los botes
             Thread.sleep(7000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
