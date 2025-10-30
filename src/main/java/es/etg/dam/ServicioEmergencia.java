@@ -2,6 +2,12 @@ package es.etg.dam;
 
 import java.io.IOException;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+
+@Data
+@AllArgsConstructor
 public class ServicioEmergencia {
 
     public final LanzadorProcesos lanzador = new LanzadorProcesos();
