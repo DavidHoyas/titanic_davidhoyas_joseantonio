@@ -1,50 +1,37 @@
 package es.etg.dam;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Random;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Bote {
 
-    public static final String EXTENSION = ".txt";
     public static final Random RANDOM = new Random();
-    public static final String ERRORBOTE = "Debe indicarse el ID del bote como argumento";
-    public static final String ID = "ID BOTE";
-    public static final String ERROR = "ERROR AL ESCRIBIR EN EL FICHERO";
-    public static final String TOTAL = "Total=%d%nMujeres=%d%nHombres=%d%nNiños=%d%n";
 
-    public static void main(String[] args) {
-        if (args.length < 1) {
-            System.err.println(ERRORBOTE);
-            System.exit(1);
-        }
+    private final String id;
+    private final int total;
+    private final int mujeres;
+    private final int hombres;
+    private final int ninios;
 
-        String id = args[0];
-        Path path = Path.of(id + EXTENSION);
+    public Bote(String id) {
+        this.id = id;
 
-        try {
-            int espera = 2 + RANDOM.nextInt(5);
-            Thread.sleep(espera * 1000L);
+        this.total = 10 + RANDOM.nextInt(91); // [10, 100]
 
-            int total = 1 + RANDOM.nextInt(100);
-            int ninos = RANDOM.nextInt(total + 1);
-            int mujeres = RANDOM.nextInt(total - ninos + 1);
-            int hombres = total - ninos - mujeres;
+        this.ninios = RANDOM.nextInt(total / 2 + 1);
 
-            String contenido = String.format(
-                    TOTAL,
-                    total, mujeres, hombres, ninos
-            );
+        this.mujeres = RANDOM.nextInt(total - ninios + 1);
 
-            Files.writeString(path, contenido);
+        this.hombres = total - ninios - mujeres;
+    }
 
-            System.out.println(ID + id);
-
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        } catch (IOException e) {
-            System.err.println("");
-        }
+    @Override
+    public String toString() {
+        return String.format("Bote %s [Total=%d, Mujeres=%d, Hombres=%d, Niños=%d]",
+                id, total, mujeres, hombres, ninios);
     }
 }
