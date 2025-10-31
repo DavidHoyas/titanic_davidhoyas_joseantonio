@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Bote {
 
+<<<<<<< HEAD
     public static final Random RANDOM = new Random();
 
     private final String id;
@@ -33,5 +34,23 @@ public class Bote {
     public String toString() {
         return String.format("Bote %s [Total=%d, Mujeres=%d, Hombres=%d, Niños=%d]",
                 id, total, mujeres, hombres, ninios);
+=======
+    public static final String FORMATO_SALIDA = "%s;%d;%d;%d;%d%n";
+
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            return;
+        }
+
+        String id = args[0];
+        Random random = new Random();
+
+        int total = 10 + random.nextInt(91);
+        int ninos = random.nextInt(total / 2 + 1);
+        int mujeres = random.nextInt(total - ninos + 1);
+        int hombres = total - ninos - mujeres;
+
+        System.out.printf(FORMATO_SALIDA, id, total, mujeres, hombres, ninos);
+>>>>>>> 29b4829 (V12)
     }
 }
