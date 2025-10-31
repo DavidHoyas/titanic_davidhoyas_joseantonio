@@ -9,29 +9,21 @@ import lombok.Data;
 @AllArgsConstructor
 public class Bote {
 
-    public static final Random RANDOM = new Random();
+    public static final String FORMATO_SALIDA = "%s;%d;%d;%d;%d%n";
 
-    private String id;
-    private int total;
-    private int mujeres;
-    private int hombres;
-    private int ninios;
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            return;
+        }
 
-    public Bote(String id) {
-        this.id = id;
+        String id = args[0];
+        Random random = new Random();
 
-        this.total = 10 + RANDOM.nextInt(91);
+        int total = 10 + random.nextInt(91);
+        int ninos = random.nextInt(total / 2 + 1);
+        int mujeres = random.nextInt(total - ninos + 1);
+        int hombres = total - ninos - mujeres;
 
-        this.ninios = RANDOM.nextInt(total / 2 + 1);
-
-        this.mujeres = RANDOM.nextInt(total - ninios + 1);
-
-        this.hombres = total - ninios - mujeres;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Bote %s [Total=%d, Mujeres=%d, Hombres=%d, Niños=%d]",
-                id, total, mujeres, hombres, ninios);
+        System.out.printf(FORMATO_SALIDA, id, total, mujeres, hombres, ninos);
     }
 }

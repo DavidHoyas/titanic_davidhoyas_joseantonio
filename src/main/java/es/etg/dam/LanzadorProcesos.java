@@ -4,13 +4,10 @@ import java.io.IOException;
 
 public class LanzadorProcesos {
 
-    public static final String LANZADOR = "Lanzado proceso para bote ";
+    public static final String COMMAND = "java -cp ./target/classes es.etg.dam.Bote %s";
 
-    public void lanzarBote(String id) throws IOException {
-        String comando = String.format("java -cp ./target/classes es.etg.dam.Bote %s", id);
-
-        Process process = Runtime.getRuntime().exec(comando);
-
-        System.out.println(LANZADOR + id);
+    public Process lanzarBote(String id) throws IOException {
+        String comando = String.format(COMMAND, id);
+        return Runtime.getRuntime().exec(comando);
     }
 }
