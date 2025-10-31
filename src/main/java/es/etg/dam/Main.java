@@ -6,13 +6,8 @@ public class Main {
     public static final String INFORME = "Informe generado correctamente: Informe.md";
 
     public static void main(String[] args) {
-
         ServicioEmergencia servicio = new ServicioEmergencia();
-
-        servicio.lanzarBotes(NUM_BOTES);
-
-        servicio.generarInforme(NUM_BOTES);
-
+        servicio.gestionarEmergencia(NUM_BOTES);
         System.out.println(INFORME);
     }
 }
