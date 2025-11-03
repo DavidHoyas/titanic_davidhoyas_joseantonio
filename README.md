@@ -210,7 +210,7 @@ package "es.etg.dam" {
 
 ## Anexos
 
-Código fuente completo: github.com/DavidHoyas/titanic_davidhoyas_joseantonio
+URL: [titanic_davidhoyas_joseantonio](https://github.com/DavidHoyas/titanic_davidhoyas_joseantonio)
 Archivos generados: Informe.md
 Herramientas utilizadas:
 - Java 17
