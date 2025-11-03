@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProcesadorInforme {
 
-    public static final String INFORME = "Informe.md";
+    public static final String INFORME = "src/main/resources/Informe.md";
     public static final String ERROR_INFORME = "Error al escribir el informe final.";
     public static final String SERVEMERGENCIA = "# SERVICIO DE EMERGENCIAS";
     public static final String SALTOLINEA = "\n";
