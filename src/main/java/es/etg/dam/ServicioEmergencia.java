@@ -9,20 +9,21 @@ import java.util.Random;
 
 public class ServicioEmergencia {
 
-    public final LanzadorProcesos lanzador = new LanzadorProcesos();
-    public final ProcesadorInforme procesador = new ProcesadorInforme();
-    public final Random random = new Random();
+    public final LanzadorProcesos LANZADOR = new LanzadorProcesos();
+    public final ProcesadorInforme PROCESADOR = new ProcesadorInforme();
+    public final Random RANDOM = new Random();
     public final static String ERROR = "Error lanzando bote ";
-    public final static String CORRECTO = " generado correctamente"; 
+    public final static String CORRECTO = " generado correctamente";
+    public final static String IDBOTES = "B%02d";
 
     public void gestionarEmergencia(int numBotes) {
         List<String> resultados = new ArrayList<>();
 
         for (int i = 0; i < numBotes; i++) {
-            String id = String.format("B%02d", i);
+            String id = String.format(IDBOTES, i);
 
             try {
-                int espera = 2000 + random.nextInt(4001);
+                int espera = 2000 + RANDOM.nextInt(4001);
                 Thread.sleep(espera);
                 System.out.println(id + CORRECTO);
             } catch (InterruptedException e) {
@@ -30,7 +31,7 @@ public class ServicioEmergencia {
             }
 
             try {
-                Process proceso = lanzador.lanzarBote(id);
+                Process proceso = LANZADOR.lanzarBote(id);
 
                 try (BufferedReader reader = new BufferedReader(
                         new InputStreamReader(proceso.getInputStream()))) {
@@ -47,6 +48,6 @@ public class ServicioEmergencia {
             }
         }
 
-        procesador.generarInforme(resultados);
+        PROCESADOR.generarInforme(resultados);
     }
 }

@@ -11,12 +11,19 @@ public class ProcesadorInforme {
 
     public static final String INFORME = "Informe.md";
     public static final String ERROR_INFORME = "Error al escribir el informe final.";
+    public static final String SERVEMERGENCIA = "# SERVICIO DE EMERGENCIAS";
+    public static final String SALTOLINEA = "\n";
+    public static final String REALIZADO = "Ejecución realizada el día ";
+    public static final String TOTALSALVADOS = "- Total Salvados ";
+    public static final String TEXTMUJERES = "  - Mujeres ";
+    public static final String TEXTHOMBRES = "  - HOMBRES ";
+    public static final String TEXTNINOS = "  - NIÑOS ";
 
     public void generarInforme(List<String> datosBotes) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("# SERVICIO DE EMERGENCIAS\n\n");
-        sb.append("Ejecución realizada el día ")
+        sb.append(SERVEMERGENCIA + SALTOLINEA);
+        sb.append(REALIZADO)
                 .append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'a las' HH:mm:ss")))
                 .append("\n\n");
 
@@ -24,7 +31,9 @@ public class ProcesadorInforme {
 
         for (String linea : datosBotes) {
             String[] partes = linea.split(";");
-            if (partes.length != 5) continue;
+            if (partes.length != 5) {
+                continue;
+            }
 
             String id = partes[0];
             int t = Integer.parseInt(partes[1]);
@@ -33,10 +42,10 @@ public class ProcesadorInforme {
             int n = Integer.parseInt(partes[4]);
 
             sb.append("## Bote ").append(id).append("\n\n");
-            sb.append("- Total Salvados ").append(t).append("\n");
-            sb.append("  - Mujeres ").append(m).append("\n");
-            sb.append("  - Hombres ").append(h).append("\n");
-            sb.append("  - Niños ").append(n).append("\n\n");
+            sb.append(TOTALSALVADOS).append(t).append("\n");
+            sb.append(TEXTMUJERES).append(m).append("\n");
+            sb.append(TEXTHOMBRES).append(h).append("\n");
+            sb.append(TEXTNINOS).append(n).append("\n\n");
 
             total += t;
             mujeres += m;
@@ -45,10 +54,10 @@ public class ProcesadorInforme {
         }
 
         sb.append("## Total\n\n");
-        sb.append("- Total Salvados ").append(total).append("\n");
-        sb.append("  - Mujeres ").append(mujeres).append("\n");
-        sb.append("  - Hombres ").append(hombres).append("\n");
-        sb.append("  - Niños ").append(ninos).append("\n");
+        sb.append(TOTALSALVADOS).append(total).append("\n");
+        sb.append(TEXTMUJERES).append(mujeres).append("\n");
+        sb.append(TEXTHOMBRES).append(hombres).append("\n");
+        sb.append(TEXTNINOS).append(ninos).append("\n");
 
         try {
             Files.writeString(Path.of(INFORME), sb.toString());
