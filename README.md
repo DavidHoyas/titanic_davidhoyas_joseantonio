@@ -40,49 +40,49 @@ El objetivo principal no es solo calcular los totales, sino practicar la creaci�
 
 ## Plan de pruebas
 
-Pruebas unitarias
+**Pruebas unitarias**
 Clase Bote
 Verifica que los valores generados sean válidos (total entre 10 y 100).
 Comprueba que la suma de mujeres + hombres + niños sea igual al total.
 Comprueba que la constante FORMATO_SALIDA es correcta.
 
-Pruebas funcionales
+**Pruebas funcionales**
 Ejecutar el proyecto y verificar que:
 Se lanzan 20 botes.
 Cada bote tarda entre 2 y 6 segundos.
 El archivo Informe.md se genera correctamente.
 La suma total de personas coincide con la suma de todos los botes.
 
-Pruebas de integración
+**Pruebas de integración**
 Validar que el ServicioEmergencias gestiona correctamente todos los procesos sin errores ni bloqueos.
 
 ---
 
 ## Manual de usuario
 
-Ejecutar el programa desde la clase Main.java.
-Esperar a que se generen todos los botes (verás mensajes en consola).
-Al finalizar, se creará el archivo Informe.md en la raíz del proyecto.
-Abrir Informe.md para ver los resultados en formato legible.
+- Ejecutar el programa desde la clase Main.java.
+- Esperar a que se generen todos los botes (verás mensajes en consola).
+- Al finalizar, se creará el archivo Informe.md en la raíz del proyecto.
+- Abrir Informe.md para ver los resultados en formato legible.
 
 ---
 
 ## Elementos destacables del desarrollo
 
-Uso de procesos reales en lugar de hilos.
-Generación de informes Markdown.
-Diseño modular dividido en clases especializadas.
-Simulación realista de tiempos aleatorios de ejecución.
-Integración con JUnit para las pruebas unitarias.
+- Uso de procesos reales en lugar de hilos.
+- Generación de informes Markdown.
+- Diseño modular dividido en clases especializadas.
+- Simulación realista de tiempos aleatorios de ejecución.
+- Integración con JUnit para las pruebas unitarias.
 
 ---
 
 ## Problemas encontrados
 
-Dificultad inicial al coordinar procesos sin usar hilos (Thread).
-Condiciones de carrera al intentar leer los datos antes de que los procesos terminasen.
-Manejo de las rutas de ejecución del comando java -cp en distintos sistemas operativos.
-Adaptación de los tests unitarios para una clase sin getters ni setters personalizados.
+- Dificultad inicial al coordinar procesos sin usar hilos (Thread).
+- Condiciones de carrera al intentar leer los datos antes de que los procesos terminasen.
+- Manejo de las rutas de ejecución del comando java -cp en distintos sistemas operativos.
+- Adaptación de los tests unitarios para una clase sin getters ni setters personalizados.
 
 ---
 
@@ -115,25 +115,25 @@ Adaptación de los tests unitarios para una clase sin getters ni setters persona
 ---
 
 ## Componentes
-Main.java
-Punto de entrada.
-Llama a los métodos del servicio principal.
+- Main.java
+  - Punto de entrada.
+  - Llama a los métodos del servicio principal.
 
-ServicioEmergencias.java
-Coordina los lanzamientos de procesos.
-Espera los resultados y los envía al procesador.
+- ServicioEmergencias.java
+  - Coordina los lanzamientos de procesos.
+  - Espera los resultados y los envía al procesador.
 
-LanzadorProcesos.java
-Ejecuta un proceso externo con Runtime.getRuntime().exec()
-Se encarga de construir el comando Java.
+- LanzadorProcesos.java
+  - Ejecuta un proceso externo con Runtime.getRuntime().exec()
+  - Se encarga de construir el comando Java.
 
-Bote.java
-Proceso independiente.
-Genera los datos aleatorios y los imprime por salida estándar.
+- Bote.java
+  - Proceso independiente.
+  - Genera los datos aleatorios y los imprime por salida estándar.
 
-ProcesadorInforme.java
-Lee los resultados recibidos.
-Construye el informe final en formato Markdown.
+- ProcesadorInforme.java
+  - Lee los resultados recibidos.
+  - Construye el informe final en formato Markdown.
 
 ---
 
