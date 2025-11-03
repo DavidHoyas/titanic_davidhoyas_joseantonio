@@ -10,15 +10,14 @@ José Antonio Sancha
 ## Índice
 
 [Análisis del problema](#análisis-del-problema)
-[Diseño de la solución](#diseño-de-la-solución)
-[Arquitectura](#arquitectura)
-[Componentes](#componentes)
-[Protocolo de comunicación](#protocolo-de-comunicación)
 [Plan de pruebas](#plan-de-pruebas)
 [Manual de usuario](#manual-de-usuario)
 [Elementos destacables del desarrollo](#elementos-destacables-del-desarrollo)
 [Problemas encontrados](#problemas-encontrados)
-[Conclusiones individuales](#conclusiones-individuales)
+[Arquitectura](#arquitectura)
+[Componentes](#componentes)
+[Protocolo de comunicación](#protocolo-de-comunicación)
+[Diseño del proyecto con UML](#diseño-del-proyecto-con-UML)
 [Anexos](#anexos)
 
 ---
@@ -150,7 +149,7 @@ Ejemplo:
 
 ---
 
-## Diagrama UML del proyecto
+## Diseño del proyecto con UML
 
 
 ```plantuml
