@@ -1,12 +1,15 @@
 
-🚢 Proyecto Titanic – Servicio de Emergencias
-👥 Integrantes del proyecto
+# Proyecto Titanic
+
+## Integrantes del proyecto
+
 David Hoyas
-José Antonio [Apellido]
+José Antonio Sancha
 
 ---
 
-🧭 Índice
+## Índice
+
 [Análisis del problema](#análisis-del-problema)
 [Diseño de la solución](#diseño-de-la-solución)
 [Arquitectura](#arquitectura)
@@ -21,7 +24,8 @@ José Antonio [Apellido]
 
 ---
 
-Análisis del problema (5%)
+## Análisis del problema
+
 El hundimiento del Titanic provocó una situación de emergencia con múltiples botes salvavidas.
 Cada bote debía comunicar al servicio de emergencias el número de personas rescatadas.
 
@@ -33,9 +37,9 @@ El servicio central recibe la información de cada bote y genera un informe fina
 El objetivo principal no es solo calcular los totales, sino practicar la creación y gestión de procesos en Java, junto con la comunicación entre procesos y la generación de informes.
 
 ---
----
 
-🧪 Plan de pruebas (3%)
+## Plan de pruebas
+
 Pruebas unitarias
 Clase Bote
 Verifica que los valores generados sean válidos (total entre 10 y 100).
@@ -54,14 +58,17 @@ Validar que el ServicioEmergencias gestiona correctamente todos los procesos sin
 
 ---
 
-📘 Manual de usuario (0%)
+## Manual de usuario
+
 Ejecutar el programa desde la clase Main.java.
 Esperar a que se generen todos los botes (verás mensajes en consola).
 Al finalizar, se creará el archivo Informe.md en la raíz del proyecto.
 Abrir Informe.md para ver los resultados en formato legible.
 
 ---
-💡 Elementos destacables del desarrollo (5%)
+
+## Elementos destacables del desarrollo
+
 Uso de procesos reales en lugar de hilos.
 Generación de informes Markdown.
 Diseño modular dividido en clases especializadas.
@@ -70,34 +77,44 @@ Integración con JUnit para las pruebas unitarias.
 
 ---
 
-⚠️ Problemas encontrados (5%)
+## Problemas encontrados
+
 Dificultad inicial al coordinar procesos sin usar hilos (Thread).
 Condiciones de carrera al intentar leer los datos antes de que los procesos terminasen.
 Manejo de las rutas de ejecución del comando java -cp en distintos sistemas operativos.
 Adaptación de los tests unitarios para una clase sin getters ni setters personalizados.
 
 ---
-📎 Anexos (0%)
-Código fuente completo: github.com/DavidHoyas/titanic_davidhoyas_joseantonio
-Archivos generados: Informe.md
-Herramientas utilizadas:
-Java 17
-JUnit 5
-Lombok
-Maven
+
+## Arquitectura
+
+```
+- titanic_davidhoyas_joseantonio
+  - src
+    - main
+      - java
+        - es/etg/dam
+          - Bote.java
+          - LanzadorProcesos.java
+          - Main.java
+          - ProcesadorInforme.java
+          - ServicioEmergencia.java
+      - resources
+        - Informe.md 
+    - test
+      - java
+        - es/etg/dam
+          - BoteTest.java
+          - LanzadorProcesosTest.java
+          - ServicioEmergenciaTest.java
+  - .gitignore
+  - pom.xml
+  - README.md
+```
 
 ---
-🏗️ Arquitectura (6%)
-Flujo general:
-Main crea una instancia de ServicioEmergencias.
-Este utiliza LanzadorProcesos para ejecutar los botes como procesos.
-Cada Bote genera su salida y termina.
-ServicioEmergencias recoge la información y la pasa a ProcesadorInforme.
-Se genera el informe Informe.md.
 
----
-
-⚙️ Componentes (4%)
+## Componentes
 Main.java
 Punto de entrada.
 Llama a los métodos del servicio principal.
@@ -120,7 +137,8 @@ Construye el informe final en formato Markdown.
 
 ---
 
-🔗 Protocolo de comunicación (2%)
+## Protocolo de comunicación
+
 La comunicación entre procesos se realiza mediante la salida estándar (stdout).
 
 Cada bote imprime una línea con el siguiente formato:
@@ -186,3 +204,15 @@ package "es.etg.dam" {
 }
 @enduml
 ```
+
+---
+
+## Anexos
+
+Código fuente completo: github.com/DavidHoyas/titanic_davidhoyas_joseantonio
+Archivos generados: Informe.md
+Herramientas utilizadas:
+- Java 17
+- JUnit 5
+- Lombok
+- Maven
