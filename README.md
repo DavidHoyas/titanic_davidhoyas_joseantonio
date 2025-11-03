@@ -1,4 +1,3 @@
-
 # Proyecto Titanic
 
 ## Integrantes del proyecto
@@ -26,34 +25,34 @@ José Antonio Sancha
 
 ## Análisis del problema
 
-El hundimiento del Titanic provocó una situación de emergencia con múltiples botes salvavidas.
-Cada bote debía comunicar al servicio de emergencias el número de personas rescatadas.
-
-El problema a resolver consiste en simular esta situación con procesos independientes, donde:
-Cada bote se ejecuta como un proceso autónomo.
-Cada uno tarda entre 2 y 6 segundos en realizar su conteo.
-El servicio central recibe la información de cada bote y genera un informe final en formato Markdown con el recuento global.
-
-El objetivo principal no es solo calcular los totales, sino practicar la creación y gestión de procesos en Java, junto con la comunicación entre procesos y la generación de informes.
+El problema consiste en simular un servicio de emergencias que coordina el rescate de personas gestionando 20 botes salvavidas de forma autónoma.
+Cada bote genera un número aleatorio de pasajeros y tarda entre 2 y 6 segundos en realizar su recuento, informando después al servicio central.
+El sistema debe procesar la información recibida y generar un informe en formato Markdown con los datos de cada bote y el total global.
+Se requiere manejar la concurrencia y sincronización entre procesos, asegurando que todos los botes finalicen antes de crear el informe.
+El programa debe reflejar correctamente el número de mujeres, hombres y niños rescatados por bote. El principal objetivo es la coordinación entre procesos independientes y la correcta agregación de los resultados.
+En definitiva, el proyecto busca representar de forma ordenada y concurrente la gestión de una emergencia marítima.
 
 ---
 
 ## Plan de pruebas
 
-**Pruebas unitarias**
+### Pruebas unitarias
+
 Clase Bote
 Verifica que los valores generados sean válidos (total entre 10 y 100).
 Comprueba que la suma de mujeres + hombres + niños sea igual al total.
 Comprueba que la constante FORMATO_SALIDA es correcta.
 
-**Pruebas funcionales**
+### Pruebas funcionales
+
 Ejecutar el proyecto y verificar que:
 Se lanzan 20 botes.
 Cada bote tarda entre 2 y 6 segundos.
 El archivo Informe.md se genera correctamente.
 La suma total de personas coincide con la suma de todos los botes.
 
-**Pruebas de integración**
+### Pruebas de integración
+
 Validar que el ServicioEmergencias gestiona correctamente todos los procesos sin errores ni bloqueos.
 
 ---
@@ -61,8 +60,8 @@ Validar que el ServicioEmergencias gestiona correctamente todos los procesos sin
 ## Manual de usuario
 
 - Ejecutar el programa desde la clase Main.java.
-- Esperar a que se generen todos los botes (verás mensajes en consola).
-- Al finalizar, se creará el archivo Informe.md en la raíz del proyecto.
+- Esperar a que se generen todos los botes (verás como se van generando los botes uno a uno en consola).
+- Al finalizar, se creará el archivo Informe.md en la carpeta **resources** del proyecto.
 - Abrir Informe.md para ver los resultados en formato legible.
 
 ---
@@ -139,16 +138,18 @@ Validar que el ServicioEmergencias gestiona correctamente todos los procesos sin
 
 ## Protocolo de comunicación
 
-La comunicación entre procesos se realiza mediante la salida estándar (stdout).
+La comunicación entre procesos se realiza mediante la salida estándar (stdout). Cada bote imprime una línea con el siguiente formato:
 
-Cada bote imprime una línea con el siguiente formato:
-ID;Total;Mujeres;Hombres;Niños
+**ID, Total, Mujeres, Hombres, Niños**
+
 El proceso principal (ServicioEmergencias) lee esta salida con un BufferedReader conectado al InputStream del proceso hijo.
 
 Ejemplo:
-B01;72;30;28;14
-﻿
+
+**ID (B01), Total (72), Mujeres (30), Hombres (28), Niños (14)**
+
 ---
+
 ## Diagrama UML del proyecto
 
 
